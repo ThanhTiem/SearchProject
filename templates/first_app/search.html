@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- {% load staticfiles%} -->
+<html>
+  <head>
+    <title>LeThanhTiem</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="{%static "css/bootstrap.css"%}" rel="stylesheet" type="text/css" media="all" />
+  	<link rel="stylesheet" href="{%static "css/style.css"%}" type="text/css" media="all" />
+  	<link rel="stylesheet" href="{%static "css/font-awesome.css"%}" rel="stylesheet">
+  	<!-- //for bootstrap working -->
+  	<link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,300,300i,400,400i,500,500i,600,600i,700,800" rel="stylesheet">
+  	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700" rel="stylesheet">
+  </head>
+  <body>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+        <div class="container">
+          <div style="background:transparent !important" class="jumbotron">
+            <form action="upload" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+                  <div class="col-xs-6 ">
+                    <input type="file" id="file-input" name = "file"\/>
+                  </div>
+                  <div class="col-xs-6">
+                    <button type="submit" class="btn btn-primary bnr-button">Search</button>
+                  </div>
+              <!-- <input type="submit"> -->
+            </form>
+          </div>
+
+
+          <h2>Query:<h2>
+          <img src={{query}} style="width:200px;height:150px;">
+
+          <h2>Result:</h2>
+          <div class="row">
+            <div class="col-md-4 col-xs-6">
+              <img src={{r0}} alt="result0" style="width:350px;height:250px;">
+            </div>
+            <div class="col-md-4 col-xs-6">
+              <img src={{r1}} alt="result1" style="width:350px;height:250px;">
+            </div>
+            <div class="col-md-4 col-xs-6">
+              <img src={{r2}} alt="result2" style="width:350px;height:250px;">
+            </div>
+            <div class="col-md-4 col-xs-6">
+              <img src={{r3}} alt="result3" style="width:350px;height:250px;">
+            </div>
+            <div class="col-md-4 col-xs-6">
+              <img src={{r4}} alt="result4" style="width:350px;height:250px;">
+            </div>
+            <div class="col-md-4 col-xs-6">
+              <img src={{r5}} alt="result5" style="width:350px;height:250px;">
+            </div>
+            <div class="col-md-4 col-xs-6">
+              <img src={{r6}} alt="result6" style="width:350px;height:250px;">
+            </div>
+            <div class="col-md-4 col-xs-6">
+              <img src={{r7}} alt="result7" style="width:350px;height:250px;">
+            </div>
+            <div class="col-md-4 col-xs-6">
+              <img src={{r8}} alt="result8" style="width:350px;height:250px;">
+            </div>
+            <div class="col-md-4 col-xs-6">
+              <img src={{r9}} alt="result9" style="width:350px;height:250px;">
+            </div>
+            <div class="col-md-4 col-xs-6">
+              <img src={{r10}} alt="result10" style="width:350px;height:250px;">
+            </div>
+            <div class="col-md-4 col-xs-6">
+              <img src={{r11}} alt="result11" style="width:350px;height:250px;">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
