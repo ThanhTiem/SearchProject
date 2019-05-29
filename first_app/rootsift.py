@@ -18,6 +18,6 @@ class RootSIFT:
 		# square-root
 		descs /= (descs.sum(axis=1, keepdims=True) + eps)
 		descs = np.sqrt(descs)
-
+		
 		# return a tuple of the keypoints and descriptors
 		return kps, descs
