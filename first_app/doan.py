@@ -53,9 +53,7 @@ def getFeatures(desFile, numWord, trainFile):
     model = MiniBatchKMeans(n_clusters=numWord, init_size=numWord*3, batch_size=1000,
             random_state=0).fit(descriptors)
     voc = model.cluster_centers_
-    # gmm = GaussianMixture(n_components=1000)
-    # gmm.fit(descriptors)
-    # voc = gmm.means_
+   
     print(voc.shape)
     # Calculate the histogram of features
     im_features = np.zeros((len(imgpaths), numWord))
@@ -76,13 +74,13 @@ def getFeatures(desFile, numWord, trainFile):
     joblib.dump((im_features, imgpaths, idf, numWord, voc), trainFile, compress=3)
     return trainFile
 def exeSearch(path):
-
+    print("RootSIFT Image input...")
     mydict = {}
     mydict['query'] = path
     image = cv2.imread(path[1:])
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     kp, des = getRootSIFT(gray)
-
+    print("Alo, RootSIFT done!!")
     im_features, image_paths, idf, numWords, voc = joblib.load("first_app/offord1000.pkl")
 
     test_features = np.zeros((1, numWords))
