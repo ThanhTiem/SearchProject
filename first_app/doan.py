@@ -46,7 +46,7 @@ def getAllDescriptors(path, desFile):
     # descriptors = np.vstack([des for des in descsList])
     joblib.dump((imgpaths, descsList, descriptors), desFile, compress=3)
     return desFile
-def getFeatures(desFile, numWord, trainFile):
+def training(desFile, numWord, trainFile):
     imgpaths, descsList, descriptors = joblib.load(desFile)
     print("num {}".format(len(descriptors)))
     # voc, variance = kmeans(descriptors, numWord, 1)
@@ -73,6 +73,19 @@ def getFeatures(desFile, numWord, trainFile):
     im_features = preprocessing.normalize(im_features, norm='l2')
     joblib.dump((im_features, imgpaths, idf, numWord, voc), trainFile, compress=3)
     return trainFile
+
+def process():
+    if not glob.glob("des-of-oxford.pkl"):
+        print("creating lis descriptor")
+        desfile = getAllDescriptors("images", "des-of-oxford.pkl")
+    else:
+        desfile = "deds-of-oxford.pkl"
+    if not glob.glob("oxford.pkl"):
+        print("training")
+        trainfile = training(desfile, 2000, "oxford.pkl")
+    else:
+        trainfile = "oxford.pkl"
+
 def exeSearch(path):
     print("RootSIFT Image input...")
     mydict = {}
@@ -81,7 +94,7 @@ def exeSearch(path):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     kp, des = getRootSIFT(gray)
     print("Alo, RootSIFT done!!")
-    im_features, image_paths, idf, numWords, voc = joblib.load("first_app/offord1000.pkl")
+    im_features, image_paths, idf, numWords, voc = joblib.load("first_app/oxford.pkl")
 
     test_features = np.zeros((1, numWords))
     words, distance = vq(des,voc)
